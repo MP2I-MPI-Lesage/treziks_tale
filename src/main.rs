@@ -1,12 +1,13 @@
 mod player;
 
-use bevy::{prelude::{App, Startup, Query, With, Commands, Camera2dBundle, Transform, ImagePlugin, PluginGroup}, window::{Window, PrimaryWindow}, utils::default, DefaultPlugins};
+use bevy::{prelude::{App, Startup, Query, With, Commands, Camera2dBundle, Transform, ImagePlugin, PluginGroup, Update}, window::{Window, PrimaryWindow}, utils::default, DefaultPlugins};
 
 
 fn main() {
     App::new()
     .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
     .add_systems(Startup, spawn_camera)
+    .add_systems(Update, player::player_movements)
     .add_systems(Startup, player::spawn_player)
     .run()
 
