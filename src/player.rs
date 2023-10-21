@@ -1,13 +1,11 @@
 use bevy::ecs::system::Res;
-use bevy::prelude::{Transform, Vec2, KeyCode, Input, Vec3};
+use bevy::prelude::{Transform, Vec2, KeyCode, Input, Vec3, Without, Camera2d, Camera2dBundle};
 use bevy::sprite::{SpriteBundle, Sprite};
 use bevy::time::Time;
 use bevy::{prelude::{Component, With, Commands, Query, AssetServer}, window::{Window, PrimaryWindow}};
 
 #[derive(Component)]
 pub struct Player {}
-
-pub const PLAYER_SPEED: f32 = 200.0;
 
 pub fn spawn_player(mut commands: Commands, query: Query<&Window, With<PrimaryWindow>>, asset_server: Res<AssetServer>) {
     let window = query.get_single().unwrap();
@@ -25,8 +23,10 @@ pub fn spawn_player(mut commands: Commands, query: Query<&Window, With<PrimaryWi
             },
             Player {},
         )
-    );
+    ); 
 }
+
+pub const PLAYER_SPEED: f32 = 200.0; 
 
 pub const MOVEMENTS_MAPPING: [(KeyCode, Vec3); 4] = [
     (KeyCode::W, Vec3::new(0.0, 1.0, 0.0)),
@@ -34,6 +34,10 @@ pub const MOVEMENTS_MAPPING: [(KeyCode, Vec3); 4] = [
     (KeyCode::D, Vec3::new(1.0, 0.0, 0.0)),
     (KeyCode::S, Vec3::new(0.0, -1.0, 0.0))
 ];
+
+fn player_query() {
+    
+}
 
 pub fn player_movements(
     keyboard_input: Res<Input<KeyCode>>,
