@@ -34,11 +34,11 @@ fn spawn_rock(mut commands: Commands, query: Query<&Window, With<PrimaryWindow>>
     );
 }
 
-fn followup_camera(mut p_query: Query<&Transform, (With<Player>, Without<PlayerCamera>)>, c_query: Query<&mut Transform, (With<PlayerCamera>, Without<Player>)>) { 
-    let p_transform = p_query.get_single_mut().unwrap();
-    let mut _c_transform = c_query.get_single().unwrap();
-
-    _c_transform = p_transform
+fn followup_camera(p_query: Query<&Transform, (With<Player>, Without<PlayerCamera>)>, mut c_query: Query<&mut Transform, (With<PlayerCamera>, Without<Player>)>) { 
+    let p_transform = p_query.get_single().unwrap();
+    let mut _c_transform = c_query.get_single_mut().unwrap(); 
+    
+    _c_transform.translation = p_transform.translation
 }
 
 #[derive(Component)]
