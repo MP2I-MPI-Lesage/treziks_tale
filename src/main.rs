@@ -1,15 +1,16 @@
 mod player;
 mod camera;
 
-use bevy::{prelude::{App, Startup, Query, With, Commands, Transform, ImagePlugin, PluginGroup, Update, Res, AssetServer, Vec2}, window::{Window, PrimaryWindow}, DefaultPlugins, sprite::{SpriteBundle, Sprite}};
+use player::actions::PlayerActions;
+use bevy::{prelude::{App, Startup, Query, With, Commands, Transform, ImagePlugin, PluginGroup, Update, Res, AssetServer, Vec2}, window::{Window, PrimaryWindow}, DefaultPlugins, sprite::{SpriteBundle, Sprite}, render::{RenderPlugin, settings::{WgpuSettings, Backends}}};
+use leafwing_input_manager::prelude::InputManagerPlugin;
 
 fn main() {
     App::new()
     .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
+    .add_plugins(player::PlayerPlugin)
     .add_systems(Startup, camera::spawn_camera)
     .add_systems(Startup, spawn_rock)
-    .add_systems(Startup, player::spawn_player)
-    .add_systems(Update, player::player_movements)
     .add_systems(Update, camera::followup_camera)
     .run()
 
