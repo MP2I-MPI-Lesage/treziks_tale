@@ -79,3 +79,4 @@ pub fn spawn_player(mut commands: Commands, query: Query<&Window, With<PrimaryWi
         }
     });
 }
+
