@@ -1,5 +1,5 @@
 
-use bevy::{prelude::{Component, Commands, Query, With, Camera2dBundle, Transform, Without, OrthographicProjection}, window::{Window, PrimaryWindow}, render::camera::ScalingMode};
+use bevy::{prelude::{Commands, Query, With, Camera2dBundle, Transform, Without}, window::{Window, PrimaryWindow}};
 
 use crate::player::Player;
 

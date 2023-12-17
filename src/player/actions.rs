@@ -1,4 +1,4 @@
-use bevy::{prelude::{Resource, Gamepad, Commands, Res, EventReader, Vec3, GamepadAxis, Input, GamepadButton, Axis, GamepadAxisType, Vec2, Event, EventWriter, Query, With, Transform, KeyCode}, input::gamepad::{GamepadEvent, GamepadConnectionEvent, GamepadConnection}, time::Time, reflect::Reflect};
+use bevy::{prelude::{Res, Vec3, Query, With, Transform}, time::Time};
  
 use leafwing_input_manager::{Actionlike, prelude::ActionState, orientation::Direction, errors::NearlySingularConversion};
 
@@ -55,5 +55,5 @@ pub fn player_movements(
         }
     }
 
-    transform.translation += direction_vec.normalize() * PLAYER_SPEED * time.delta_seconds();
+    transform.translation += direction_vec.normalize_or_zero() * PLAYER_SPEED * time.delta_seconds();
 }
