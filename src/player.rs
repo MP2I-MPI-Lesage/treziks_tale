@@ -6,6 +6,7 @@ use leafwing_input_manager::InputManagerBundle;
 use leafwing_input_manager::prelude::{ActionState, InputMap, InputManagerPlugin};
 
 pub mod actions;
+pub mod inventory;
 
 use actions::PlayerActions;
 
