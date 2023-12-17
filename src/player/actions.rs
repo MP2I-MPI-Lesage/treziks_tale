@@ -1,10 +1,10 @@
 use bevy::{prelude::{Res, Vec3, Query, With, Transform}, time::Time};
  
-use leafwing_input_manager::{Actionlike, prelude::ActionState, orientation::Direction, errors::NearlySingularConversion};
+use leafwing_input_manager::{Actionlike, prelude::ActionState, orientation::Direction};
 
 use crate::player::Player;
 
-#[derive(Actionlike, PartialEq, Eq, Clone, Copy, Hash, Debug, Reflect)]
+#[derive(Actionlike, PartialEq, Eq, Clone, Copy, Hash, Debug, bevy::reflect::Reflect)]
 pub enum PlayerActions {
     // Movs
     Up,

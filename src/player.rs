@@ -3,7 +3,7 @@ use bevy::prelude::{Transform, Vec2, KeyCode, Bundle, GamepadButtonType, App, Pl
 use bevy::sprite::{SpriteBundle, Sprite};
 use bevy::{prelude::{Component, With, Commands, Query, AssetServer}, window::{Window, PrimaryWindow}};
 use leafwing_input_manager::InputManagerBundle;
-use leafwing_input_manager::prelude::{ActionState, InputMap, InputManagerPlugin};
+use leafwing_input_manager::prelude::{InputMap, InputManagerPlugin};
 
 pub mod actions;
 pub mod inventory;

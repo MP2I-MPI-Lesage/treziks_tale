@@ -1,8 +1,7 @@
 mod player;
 mod camera;
 
-use player::actions::PlayerActions;
-use bevy::{prelude::{App, Startup, Query, With, Commands, Transform, ImagePlugin, PluginGroup, Update, Res, AssetServer, Vec2}, window::{Window, PrimaryWindow}, DefaultPlugins, sprite::{SpriteBundle, Sprite}, render::{RenderPlugin, settings::{WgpuSettings, Backends}}};
+use bevy::{prelude::{App, Startup, Query, With, Commands, Transform, ImagePlugin, PluginGroup, Update, Res, AssetServer, Vec2}, window::{Window, PrimaryWindow}, DefaultPlugins, sprite::{SpriteBundle, Sprite}};
 
 fn main() {
     App::new()
