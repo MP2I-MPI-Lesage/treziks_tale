@@ -57,3 +57,4 @@ pub fn player_movements(
 
     transform.translation += direction_vec.normalize_or_zero() * PLAYER_SPEED * time.delta_seconds();
 }
+

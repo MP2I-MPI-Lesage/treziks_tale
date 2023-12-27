@@ -10,12 +10,15 @@ pub mod inventory;
 
 use actions::PlayerActions;
 
+use self::inventory::InventoryPlugin;
+
 pub struct PlayerPlugin;
 
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
         app
             .add_plugins(InputManagerPlugin::<PlayerActions>::default())
+            .add_plugins(InventoryPlugin)
             .add_systems(Startup, spawn_player)
             .add_systems(Update, actions::player_movements);
     }
