@@ -1,8 +1,8 @@
-use bevy::{prelude::{Resource, Gamepad, Commands, Res, EventReader, Vec3, GamepadAxis, Input, GamepadButton, Axis, GamepadAxisType, Vec2, Event, EventWriter, Query, With, Transform, KeyCode}, input::gamepad::{GamepadEvent, GamepadConnectionEvent, GamepadConnection}, time::Time, reflect::Reflect};
+use bevy::{prelude::{Res, Vec3, Query, With, Transform}, time::Time, reflect::Reflect};
  
-use leafwing_input_manager::{Actionlike, prelude::ActionState, orientation::Direction, errors::NearlySingularConversion};
+use leafwing_input_manager::{Actionlike, prelude::ActionState, orientation::Direction};
 
-use crate::player::Player;
+use crate::game::player::Player;
 
 #[derive(Actionlike, PartialEq, Eq, Clone, Copy, Hash, Debug, Reflect)]
 pub enum PlayerActions {
@@ -55,5 +55,10 @@ pub fn player_movements(
         }
     }
 
+    if direction_vec.length() > 0.0 {
+        direction_vec = direction_vec.normalize();
+    }
+
     transform.translation += direction_vec * PLAYER_SPEED * time.delta_seconds();
 }
+
