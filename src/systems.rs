@@ -1,9 +1,6 @@
-
 use bevy::{prelude::{Commands, Query, With, Camera2dBundle, Transform, Without, Component}, window::{Window, PrimaryWindow}};
 
-use crate::player::Player;
-
-
+use crate::game::player::Player;
 
 #[derive(Component)]
 pub struct PlayerCamera;

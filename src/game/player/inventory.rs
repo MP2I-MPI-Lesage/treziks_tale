@@ -8,6 +8,8 @@ impl Plugin for InventoryPlugin {
     }
 }
 
-pub fn spawn_inventory() {
-    
+pub fn spawn_inventory(mut commands: Commands) {
+    commands.spawn(NodeBundle {
+        ..Default::default()
+    });
 }

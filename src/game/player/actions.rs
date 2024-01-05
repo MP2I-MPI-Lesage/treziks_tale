@@ -1,10 +1,10 @@
-use bevy::{prelude::{Res, Vec3, Query, With, Transform}, time::Time};
+use bevy::{prelude::{Res, Vec3, Query, With, Transform}, time::Time, reflect::Reflect};
  
 use leafwing_input_manager::{Actionlike, prelude::ActionState, orientation::Direction};
 
-use crate::player::Player;
+use crate::game::player::Player;
 
-#[derive(Actionlike, PartialEq, Eq, Clone, Copy, Hash, Debug, bevy::reflect::Reflect)]
+#[derive(Actionlike, PartialEq, Eq, Clone, Copy, Hash, Debug, Reflect)]
 pub enum PlayerActions {
     // Movs
     Up,
@@ -55,6 +55,10 @@ pub fn player_movements(
         }
     }
 
-    transform.translation += direction_vec.normalize_or_zero() * PLAYER_SPEED * time.delta_seconds();
+    if direction_vec.length() > 0.0 {
+        direction_vec = direction_vec.normalize();
+    }
+
+    transform.translation += direction_vec * PLAYER_SPEED * time.delta_seconds();
 }
 

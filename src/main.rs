@@ -1,15 +1,34 @@
-mod player;
-mod camera;
+mod game;
+mod systems;
+mod main_menu;
 
-use bevy::{prelude::{App, Startup, Query, With, Commands, Transform, ImagePlugin, PluginGroup, Update, Res, AssetServer, Vec2}, window::{Window, PrimaryWindow}, DefaultPlugins, sprite::{SpriteBundle, Sprite}};
+use bevy::{prelude::{App, Startup, Query, With, Commands, Transform, ImagePlugin, PluginGroup, Update, Res, AssetServer, Vec2}, window::{Window, PrimaryWindow}, DefaultPlugins, sprite::{SpriteBundle, Sprite}, ecs::schedule::{States, OnEnter, IntoSystemConfigs, common_conditions::in_state}};
+use game::GamePlugin;
+use main_menu::MainMenuPlugin;
+
+#[derive(States, Clone, Debug, PartialEq, Eq, Hash)]
+enum AppState {
+    MainMenu,
+    InGame,
+    Paused
+}
+
+impl Default for AppState {
+    fn default() -> Self {
+        AppState::MainMenu
+    }
+}
 
 fn main() {
     App::new()
     .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
-    .add_plugins(player::PlayerPlugin)
-    .add_systems(Startup, camera::spawn_camera)
-    .add_systems(Startup, spawn_rock)
-    .add_systems(Update, camera::followup_camera)
+    .add_plugins(bevy_inspector_egui::quick::WorldInspectorPlugin::new())
+    .add_state::<AppState>()
+    .add_plugins(MainMenuPlugin)
+    .add_plugins(GamePlugin)
+    .add_systems(Startup, systems::spawn_camera)
+    .add_systems(OnEnter(AppState::InGame), spawn_rock)
+    .add_systems(Update, systems::followup_camera.run_if(in_state(AppState::InGame)))
     .run()
 
 }
